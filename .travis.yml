@@ -29,7 +29,9 @@ install:
     - popd
     - pip install -U pip setuptools python-magic yapsy simplejson pydeep
     - if [ $(python -c 'import sys; print(sys.version_info.major)') == '2' ]; then pip install pefile distorm3 ; fi
-    - sudo make install
+    - python setup.py build
+    - python setup.py install
 
 script:
-    - make test
+    - python setup.py test
+    - mas.py -h
