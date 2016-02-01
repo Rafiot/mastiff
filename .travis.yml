@@ -21,13 +21,14 @@ install:
     - ./configure
     - make
     - sudo make install
+    - sudo ldconfig
     - pushd yara-python
     - python setup.py build
     - python setup.py install
     - popd
     - popd
-    - pip install -U pip setuptools python-magic yapsy simplejson distorm3 pydeep
-    - if [ $(python -c 'import sys; print(sys.version_info.major)') == '2' ]; then pip install pefile ; fi
+    - pip install -U pip setuptools python-magic yapsy simplejson pydeep
+    - if [ $(python -c 'import sys; print(sys.version_info.major)') == '2' ]; then pip install pefile distorm3 ; fi
     - sudo make install
 
 script:
