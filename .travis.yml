@@ -11,13 +11,8 @@ sudo: required
 
 dist: trusty
 
-addons:
-    apt:
-        packages:
-            - python-setuptools
-            - python-magic
-
 install:
+    - pip install -U pip setuptools python-magic yapsy simplejson pefile
     - sudo make install
 
 script:
