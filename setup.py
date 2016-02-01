@@ -20,11 +20,11 @@ from mastiff import get_release_string
 if sys.version_info < (2, 6, 6):
     sys.stderr.write("Mastiff requires python version 2.6.6")
     sys.exit(1)
-    
+
 setup(
     author='Tyler Hudak',
     author_email='mastiff-project@korelogic.com',
-    data_files=[('/etc/mastiff', ['mastiff.conf'])],
+    #data_files=[('/etc/mastiff', ['mastiff.conf'])],
     description="""MASTIFF is a static analysis automation framework.""",
     install_requires=['yapsy'],
     license='Apache License V2.0',
@@ -38,8 +38,8 @@ analytic needs. In a nutshell, MASTIFF allows analysts to focus on analysis
 rather than figuring out how to parse files.""",
     maintainer='Tyler Hudak',
     maintainer_email='mastiff-project@korelogic.com',
-    name='mastiff',        
-    packages=find_packages(), 
+    name='mastiff',
+    packages=find_packages(),
     package_data={'': ['*.py', '*.yapsy-plugin'] },
     platforms=['Linux'],
     scripts=['mas.py'],

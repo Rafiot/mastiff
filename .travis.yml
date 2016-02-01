@@ -2,10 +2,6 @@ language: python
 
 python:
     - "2.7"
-    - "3.3"
-    - "3.4"
-    - "3.5"
-    - "nightly"
 
 sudo: required
 
@@ -21,14 +17,17 @@ install:
     - ./configure
     - make
     - sudo make install
+    - sudo ldconfig
     - pushd yara-python
     - python setup.py build
     - python setup.py install
     - popd
     - popd
-    - pip install -U pip setuptools python-magic yapsy simplejson distorm3 pydeep
-    - if [ $(python -c 'import sys; print(sys.version_info.major)') == '2' ]; then pip install pefile ; fi
-    - sudo make install
+    - pip install -U pip setuptools python-magic yapsy simplejson pydeep
+    - if [ $(python -c 'import sys; print(sys.version_info.major)') == '2' ]; then pip install pefile distorm3 ; fi
+    - python setup.py build
+    - python setup.py install
 
 script:
-    - make test
+    - python setup.py test
+    - mas.py -h
