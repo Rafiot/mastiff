@@ -12,7 +12,22 @@ sudo: required
 dist: trusty
 
 install:
-    - pip install -U pip setuptools python-magic yapsy simplejson pefile
+    - sudo apt-get update -q
+    - sudo apt-get install libfuzzy2 libfuzzy-dev ssdeep
+    - wget https://github.com/plusvic/yara/archive/v3.4.0.tar.gz
+    - tar zxvf v3.4.0.tar.gz
+    - pushd yara-3.4.0
+    - ./bootstrap.sh
+    - ./configure
+    - make
+    - sudo make install
+    - pushd yara-python
+    - python setup.py build
+    - python setup.py install
+    - popd
+    - popd
+    - pip install -U pip setuptools python-magic yapsy simplejson distorm3 pydeep
+    - if [ $(python -c 'import sys; print(sys.version_info.major)') == '2' ]; then pip install pefile ; fi
     - sudo make install
 
 script:
